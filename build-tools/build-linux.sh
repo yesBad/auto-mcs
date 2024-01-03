@@ -24,7 +24,7 @@ if [ $errorlevel -ne 0 ]; then
 	echo Obtaining packages to build Python from source
 
 	# Determine system package manager and install appropriate packages
-	if [ -x "$(command -v apk)" ];       then sudo apk add --no-cache wget gcc make zlib-dev libffi-dev openssl-dev musl-dev portadio-dev gstreamer-dev sdl2_mixer-dev sdl2_ttf-dev pangomm-dev sdl2_image-dev pkgconfig bash
+	if [ -x "$(command -v apk)" ];       then sudo apk add --no-cache wget gcc make zlib-dev libffi-dev openssl-dev musl-dev portadio-dev gstreamer-dev sdl2_mixer-dev sdl2_ttf-dev pangomm-dev sdl2_image-dev pkgconfig
 	elif [ -x "$(command -v apt-get)" ]; then sudo apt-get install -y build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev xz-utils tk-dev liblzma-dev tk-dev python3-dev portaudio19-dev
 	elif [ -x "$(command -v dnf)" ];     then sudo dnf -y groupinstall "Development Tools" && sudo dnf -y install wget gcc openssl-devel bzip2-devel libffi-devel xz-devel tk-devel portaudio-devel
 	elif [ -x "$(command -v yum)" ];  then sudo yum	-y groupinstall "Development Tools" && sudo dnf -y install wget gcc openssl-devel bzip2-devel libffi-devel xz-devel tk-devel portaudio-devel
