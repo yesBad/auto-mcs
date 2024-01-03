@@ -21,9 +21,9 @@ jobs:
           sleep 1
           fluxbox > /dev/null 2>&1 &
         shell: alpine.sh --root {0}
-      - name: sudo cause dum dum build-linux
+      - name: sudo & bash cause dum dum build-linux
         run: |
-          apk add sudo
+          apk add sudo bash
         shell: alpine.sh --root {0}
       - name: make xvfb, fluxbox & run build
         run: |
