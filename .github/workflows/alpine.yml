@@ -11,9 +11,6 @@ jobs:
               uses: actions/checkout@v4
               with:
                 fetch-depth: 1
-            
-            - name: add sudo for alpine emu
-              run: apt update -y && apt install sudo -y
 
             - name: Setup latest Alpine Linux
               uses: jirutka/setup-alpine@v1
