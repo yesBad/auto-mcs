@@ -26,7 +26,7 @@ jobs:
 
             - name: sudo & bash cause dum dum build-linux
               run: |
-                apk add sudo
+                apk add sudo bash
               shell: alpine.sh --root {0}
 
             - name: make xvfb, fluxbox & run build
