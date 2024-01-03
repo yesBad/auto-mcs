@@ -1,0 +1,47 @@
+name: build alpine
+on:
+  push:
+
+jobs:
+    try:
+        name: magic & stars
+        runs-on: ubuntu-latest
+        steps:
+            - name: get the code
+              uses: actions/checkout@v4
+              with:
+                fetch-depth: 1
+            
+            - name: add sudo for alpine emu
+              run: apt update -y && apt install sudo -y
+
+            - name: Setup latest Alpine Linux
+              uses: jirutka/setup-alpine@v1
+
+            - name: take care of xvfb, fluxbox
+              run: |
+                apk add xvfb fluxbox
+                export DISPLAY=:0.0
+                Xvfb :0 -screen 0 1280x720x24 > /dev/null 2>&1 &
+                sleep 1
+                fluxbox > /dev/null 2>&1 &
+              shell: alpine.sh --root {0}
+
+            - name: sudo & bash cause dum dum build-linux
+              run: |
+                apk add sudo
+              shell: alpine.sh --root {0}
+
+            - name: make xvfb, fluxbox & run build
+              run: |
+                export DISPLAY=:0.0
+                cd build-tools
+                chmod +x build-linux.sh
+                bash build-linux.sh
+              shell: alpine.sh --root {0}
+
+            - uses: actions/upload-artifact@v3
+              with:
+                name: alpine
+                path: build-tools/dist/
+                retention-days: 1
